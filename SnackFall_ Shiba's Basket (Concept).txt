@@ -1,0 +1,86 @@
+﻿SnackFall: Shiba's Basket
+Development Platform: Unity (using C#)
+Genre: 2D Mobile Arcade/Action Game
+Concept: A charming and challenging 2D mobile game developed in Unity, where players navigate through distinct scenes (Title, Character Select, Game) to control a chosen Shiba Inu equipped with a basket. The goal is to catch delicious snacks falling from the sky, strategically avoid dangerous treats and dive-bombing birds, and manage the Shiba's speed through a variable jump and natural movement, all while having access to a persistent Options menu.
+Player Goal: Achieve the highest score possible by strategically catching falling snacks, skillfully avoiding dangerous items and environmental hazards (splats, birds), and managing the Shiba's speed by utilizing a variable jump and careful avoidance of weight gain, navigating through the game's structured scenes.
+________________
+
+
+Game Structure & Scene Flow:
+The game is structured around three main scenes:
+1. Title Scene:
+   * The first scene the player encounters.
+   * Displays the game title: "SnackFall: Shiba's Basket".
+   * Provides the following options:
+      * Start Game: Transitions to the Character Select Scene.
+      * Options: Opens the persistent Options Menu overlay.
+      * Exit Game: Quits the application.
+2. Character Select Scene:
+   * Accessed from the "Start Game" option in the Title Scene.
+   * Displays the available different colored Shiba Inu characters for the player to choose from.
+   * Allows the player to select their desired Shiba character (visual change only).
+   * Allows the player to equip different accessories and baskets that are unlocked through gameplay.
+   * Provides the following options:
+      * Start Game (with Selected Character): Transitions to the Game Scene, loading the chosen Shiba.
+      * Options: Opens the persistent Options Menu overlay.
+      * Back (or similar): Returns to the Title Scene.
+3. Game Scene:
+   * Accessed from the "Start Game" option in the Character Select Scene.
+   * This is where the core gameplay takes place.
+   * The chosen Shiba Inu is displayed and controlled by the player.
+   * Falling snacks, splats, birds, scoring, and all gameplay mechanics are active here.
+   * An Options Icon (e.g., a gear or pause symbol) is persistently visible, likely in the top-right corner of the screen. Tapping this icon opens the Options Menu and pauses the game.
+
+
+
+
+Persistent Options Menu:
+* This menu can be accessed from the Title, Character Select, and Game scenes via the "Options" button/icon.
+* When opened from the Game Scene, it pauses the game.
+* Provides the following options:
+   * Close Menu (or Resume Game): Closes the Options Menu overlay and, if in the Game Scene, unpauses the game.
+   * Toggle Music Mute: Mutes or unmutes the game's background music.
+   * Toggle Sound Effects Mute: Mutes or unmutes the game's sound effects (catching, bonking, splatting, jumping, etc.).
+   * Restart: Restarts the game scene with previously selected 
+   * Exit: Returns to Title scene
+________________
+
+
+Gameplay Mechanics (Detailed):
+1. Falling Snacks: * Various snack items fall from the top of the screen at random horizontal positions and varying speeds. * Each snack has a small parachute attached, causing it to drift and gently rock back and forth as it descends. * Difficulty increases over time with more frequent and faster snacks (visual cues like smaller parachutes or tears could signify increased speed). * Snack Types: * Standard Snacks: Grant points when caught. * Special Snacks: Can grant more points, temporary positive effects (e.g., speed boost), or temporary negative effects even if caught. * Dangerous Snacks: Immediately end the game if caught in the basket. Examples: Chocolate, Grapes, Avocado, Onion. Distinct visual appearances, and crucially, their parachutes are marked with a clear poison skull symbol and potentially a distinct color/sound.
+2. Player Control: * Horizontal movement of the Shiba using designated on-screen areas/buttons for left/right. * Jumping: Tap and hold anywhere on the screen outside the movement areas. Tap duration determines jump height and distance. Releasing initiates the jump. Used to clear ground obstacles.
+3. Basket Interaction: * Catching: Safe snacks in basket = points. * Catching Dangerous Snacks: In basket = Game Over. * Splatting: Snack hits ground = points penalty, leaves temporary splat obstacle.
+4. Shiba Interaction (Negative Outcomes & Speed Management): * Shiba starts fast. * Speed Reduction (Catching): Slight, persistent speed decrease per snack caught (basket weight). * Weight Gain (Eating Splats): Walk over splat = small point penalty, gain weight, significant, cumulative, persistent speed debuff. Visual weight gain cue. * Weight Loss (Movement & Jumping): Gradual recovery of speed debuff from weight as Shiba moves horizontally and jumps. * Bonk (from Snacks): Snack hits head = significant point penalty, temporary severe speed debuff. Visual daze cue.
+5. Bird Hazard: * Occasional dive-bombing bird threat. * Avoid bird bonk (via movement or possibly jumping). * Bird bonk = point penalty, potential temporary stun/debuff. * Bird icon on screen edges pointing to incoming bird. Bird attacks vertically,  player has to avoid left and right. Bird attacks horizontally, player has to jump to avoid.
+6. Directional Indicators: * Arrows on screen edges pointing to incoming snacks. * Color changes (Green -> Yellow -> Red) indicate proximity to the ground.
+7. Scoring: * Points for catching safe snacks. * Penalties for splatting, snack bonks, eating splats, and bird bonks. * Game ends on catching Dangerous Snack or reaching a negative score threshold.
+8. Speed Debuff and Weight Management: * Starts fast. * Speed affected by catching (slight, persistent), eating splats (significant, cumulative, persistent), snack bonks (temporary, severe), and bird bonks (potential temporary). * Active movement and jumping mitigate speed loss from weight gain. * Skillful play focuses on avoiding weight gain and using movement/jumps to manage speed.
+9. Character Selection: * Choose from different colored Shiba Inus (cosmetic) and accessories and basket.
+________________
+
+
+Potential Additions & Enhancements:
+* More snack/bird/hazard variety.
+* Power-ups (Magnet, Speed Boost, Splat Cleaner, Shield, Weight Reducer).
+* Level progression/goals.
+* Combos.
+* More detailed visual and sound design.
+* Online leaderboards.
+* Unlockable cosmetic customizations.
+________________
+
+
+Core Loop (Game Scene):
+1. Snacks (various types, with parachutes and rocking) and birds appear.
+2. Player uses directional controls to move the Shiba.
+3. Player uses variable jump (tap & hold) to clear ground splats and avoid hazards.
+4. Player uses indicators/visuals to anticipate items/hazards.
+5. Player catches safe snacks for points (accepting slight speed reduction).
+6. Player avoids negative interactions (splats, bonks, eating splats, bird bonks, dangerous snacks).
+7. Player manages speed through movement, jumping, and avoiding weight gain.
+8. Repeat, with increasing difficulty, until game over conditions are met (catching dangerous snack, low score).
+9. Access Options Menu from icon to pause/adjust settings.
+________________
+
+
+This document now provides a clear structure for developing "SnackFall: Shiba's Basket" in Unity with C#, detailing the scene flow, menu system, and integrating all previously discussed gameplay mechanics within that structure.
