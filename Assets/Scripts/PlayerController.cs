@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Basic horizontal movement (likely replace this with touch input later)
+        // Basic horizontal movement (replace this with touch input later)
         moveInput.x = Input.GetAxisRaw("Horizontal");
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
 
@@ -54,6 +54,25 @@ public class PlayerController : MonoBehaviour
     {
         if(basketTransform != null && other.transform.IsChildOf(basketTransform))
         {
+            switch (other.tag)
+            {
+                case "SafeSnack":
+                    Debug.Log("Caught a safe snack!");
+                    CatchSnackEvent?.Invoke("Safe");
+                    Destroy(other.gameObject);
+                    break;
+                case "DangerousSnack":
+                    Debug.Log("Caught a dangerous snack! Game Over!");
+                    // Implement Game Over logic here (load a game over scene or popup)
+                    Destroy(other.gameObject);
+                    break;
+                case "SpecialSnack":
+                    Debug.Log("Caught a special snack!");
+                    CatchSnackEvent?.Invoke("Special");
+                    Destroy(other.gameObject);
+                    break;
+            }
+            /*
             if(other.CompareTag("SafeSnack"))
             {
                 Debug.Log("Caught a safe snack!");
@@ -72,7 +91,35 @@ public class PlayerController : MonoBehaviour
                 CatchSnackEvent?.Invoke("Special");
                 Destroy(other.gameObject);
             }
+            */
         }
+        else
+        {
+            switch (other.tag)
+            {
+                case "Splat":
+                    Debug.Log("Shiba ate a splat!");
+                    EatSplatEvent?.Invoke();
+                    Destroy(other.gameObject);
+                    // Implement weight gain and speed reduction logic here
+                    break;
+                case "Bird":
+                    Debug.Log("Shiba got bonked by a bird!");
+                    BonkEvent?.Invoke("Bird");
+                    // Implement point penalty and temporary stun/debuff
+                    Destroy(other.gameObject);
+                    break;
+                case "FallingSnack":
+                case "FallingDangerousSnack":
+                case "FallingSpecialSnack":
+                    Debug.Log("Snack hit Shiba's head!");
+                    BonkEvent?.Invoke("Snack");
+                    // Implement point penalty and temporary severe speed debuff
+                    Destroy(other.gameObject);
+                    break;
+            }
+        }
+        /*
         else if(other.CompareTag("Splat"))
         {
             Debug.Log("Shiba ate a splat!");
@@ -94,5 +141,6 @@ public class PlayerController : MonoBehaviour
             // Implement point penalty and temporary severe speed debuff
             Destroy(other.gameObject);
         }
+        */
     }
 }
