@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Attach to your Shiba Inu GameObject in the Game Scene
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
